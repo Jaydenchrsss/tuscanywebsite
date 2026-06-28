@@ -198,48 +198,152 @@
     line-height: 1.5;
   }
 
-  /* ── COLLECTIONS ── */
+  /* ── COLLECTIONS PAGE ── */
   #collections { background: var(--warm-white); }
   #collections .collections-header {
     display: flex; justify-content: space-between; align-items: flex-end;
-    margin-bottom: 60px;
+    margin-bottom: 48px;
   }
-  #collections h2 { color: var(--charcoal); max-width: 400px; }
+  #collections h2 { color: var(--charcoal); max-width: 440px; }
   .collections-intro {
-    font-size: 14px; color: var(--slate); max-width: 340px; line-height: 1.75;
+    font-size: 14px; color: var(--slate); max-width: 360px; line-height: 1.8;
   }
-  .stone-grid {
+
+  /* Filter bar */
+  .coll-filter-bar {
+    display: flex; gap: 0; margin-bottom: 56px;
+    border-bottom: 1px solid rgba(107,101,96,0.15);
+    flex-wrap: wrap;
+  }
+  .coll-filter {
+    padding: 12px 24px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--slate); cursor: pointer; border: none; background: none;
+    font-family: inherit; transition: color 0.2s;
+    border-bottom: 2px solid transparent; margin-bottom: -1px;
+  }
+  .coll-filter.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .coll-filter:hover { color: var(--charcoal); }
+
+  /* Category divider */
+  .coll-category-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 13px;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold);
+    display: flex; align-items: center; gap: 20px; margin: 56px 0 32px;
+  }
+  .coll-category-title::after {
+    content: ''; flex: 1; height: 1px; background: rgba(168,136,74,0.2);
+  }
+  .coll-category-title:first-of-type { margin-top: 0; }
+
+  /* Collection grid */
+  .coll-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto auto;
+    grid-template-columns: repeat(3, 1fr);
     gap: 3px;
   }
-  .stone-card {
+
+  /* Stone card */
+  .coll-card {
     position: relative; overflow: hidden; cursor: pointer;
     background: var(--charcoal);
+    display: flex; flex-direction: column;
   }
-  .stone-card:first-child {
-    grid-column: 1 / 3; grid-row: 1 / 2;
+  .coll-card[data-category="engineered"] { }
+  .coll-card.hidden { display: none; }
+
+  .coll-card-img {
+    position: relative; overflow: hidden; flex-shrink: 0;
   }
-  .stone-card img {
-    width: 100%; display: block;
-    transition: transform 0.6s ease, opacity 0.4s;
-    object-fit: cover;
+  .coll-card-img img {
+    width: 100%; height: 280px; object-fit: cover; display: block;
+    transition: transform 0.6s ease;
   }
-  .stone-card:first-child img { height: 420px; }
-  .stone-card:not(:first-child) img { height: 210px; }
-  .stone-card:hover img { transform: scale(1.05); opacity: 0.7; }
-  .stone-card-label {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    padding: 20px 22px 18px;
-    background: linear-gradient(transparent, rgba(26,24,20,0.9));
+  .coll-card:hover .coll-card-img img { transform: scale(1.06); }
+
+  .coll-card-badge {
+    position: absolute; top: 16px; left: 16px;
+    background: var(--gold); color: var(--charcoal);
+    font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 4px 10px;
   }
-  .stone-name {
-    font-family: 'Cormorant Garamond', serif; font-size: 20px;
-    color: var(--ivory); font-weight: 300;
+
+  .coll-card-body {
+    padding: 24px 24px 28px;
+    background: var(--charcoal);
+    flex: 1; display: flex; flex-direction: column;
   }
-  .stone-sub { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--beige); margin-top: 4px; }
+  .coll-card-name {
+    font-family: 'Cormorant Garamond', serif; font-size: 24px;
+    font-weight: 300; color: var(--ivory); margin-bottom: 8px;
+  }
+  .coll-card-tags {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px;
+  }
+  .coll-tag {
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--beige); border: 1px solid rgba(201,185,154,0.25);
+    padding: 3px 8px;
+  }
+  .coll-card-desc {
+    font-size: 13px; color: rgba(247,243,238,0.55); line-height: 1.75;
+    flex: 1; margin-bottom: 20px;
+  }
+  .coll-card-uses {
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--slate); margin-bottom: 4px;
+  }
+  .coll-card-actions {
+    display: flex; gap: 10px; margin-top: 20px; padding-top: 18px;
+    border-top: 1px solid rgba(247,243,238,0.07);
+  }
+  .coll-btn-primary {
+    flex: 1; background: var(--gold); color: var(--charcoal);
+    font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 10px 14px; text-align: center; text-decoration: none;
+    transition: background 0.2s; border: none; cursor: pointer; font-family: inherit;
+  }
+  .coll-btn-primary:hover { background: var(--beige); }
+  .coll-btn-ghost {
+    flex: 1; border: 1px solid rgba(247,243,238,0.15); color: rgba(247,243,238,0.6);
+    font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 10px 14px; text-align: center; text-decoration: none;
+    transition: border-color 0.2s, color 0.2s; background: none; cursor: pointer; font-family: inherit;
+  }
+  .coll-btn-ghost:hover { border-color: var(--gold); color: var(--ivory); }
+
+  /* Sourcing banner */
+  .coll-sourcing {
+    margin-top: 60px; padding: 48px 56px;
+    background: var(--charcoal);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+  }
+  .coll-sourcing h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 32px;
+    font-weight: 300; color: var(--ivory); margin-bottom: 16px;
+  }
+  .coll-sourcing p { font-size: 14px; color: rgba(247,243,238,0.6); line-height: 1.8; }
+  .sourcing-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .sourcing-stat-num {
+    font-family: 'Cormorant Garamond', serif; font-size: 48px;
+    font-weight: 300; color: var(--gold); line-height: 1;
+  }
+  .sourcing-stat-label {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--slate); margin-top: 6px;
+  }
+
+  /* Old stone-grid kept for compatibility */
+  .stone-grid { display: none; }
+  .stone-card { display: none; }
+  .stone-name, .stone-sub { display: none; }
   .collections-cta { text-align: center; margin-top: 50px; }
+
+  @media (max-width: 900px) {
+    .coll-grid { grid-template-columns: 1fr; }
+    .collections-header { flex-direction: column; gap: 20px; }
+    .coll-sourcing { grid-template-columns: 1fr; padding: 36px 24px; }
+    .coll-card-img img { height: 220px; }
+  }
 
   /* ── WHY TUSCANY ── */
   #why {
@@ -534,60 +638,308 @@
 <section id="collections">
   <div class="collections-header">
     <div>
-      <p class="section-label">Our Materials</p>
+      <p class="section-label">Collections &amp; Sourcing</p>
       <h2>850+ Stones,<br/>Every Vision Served</h2>
     </div>
-    <p class="collections-intro">From polished marble countertops to translucent onyx feature walls — we carry the full spectrum of natural stone with expert guidance at every step.</p>
+    <p class="collections-intro">From natural marble quarried in Italy to ultra-compact Dekton surfaces — our portfolio spans every material category a project demands, sourced ethically and delivered with precision.</p>
   </div>
 
-  <div class="stone-grid">
-    <div class="stone-card">
-      <img src="https://images.unsplash.com/photo-1615971677499-5467cbab01c0?w=900&q=80" alt="Marble" />
-      <div class="stone-card-label">
-        <div class="stone-name">Marble Collection</div>
-        <div class="stone-sub">Timeless Elegance · Premium Veining</div>
+  <!-- Filter bar -->
+  <div class="coll-filter-bar">
+    <button class="coll-filter active" onclick="filterColl('all', this)">All Collections</button>
+    <button class="coll-filter" onclick="filterColl('natural', this)">Natural Stone</button>
+    <button class="coll-filter" onclick="filterColl('semi', this)">Semi-Precious</button>
+    <button class="coll-filter" onclick="filterColl('engineered', this)">Engineered Stone</button>
+  </div>
+
+  <!-- NATURAL STONE -->
+  <p class="coll-category-title" data-cat="natural">Natural Stone</p>
+  <div class="coll-grid" id="natural-grid">
+
+    <!-- MARBLE -->
+    <div class="coll-card" data-category="natural">
+      <div class="coll-card-img">
+        <img src="https://images.unsplash.com/photo-1615971677499-5467cbab01c0?w=700&q=80" alt="Marble Collection" loading="lazy" />
+        <span class="coll-card-badge">Featured</span>
+      </div>
+      <div class="coll-card-body">
+        <div class="coll-card-name">Marble Collection</div>
+        <div class="coll-card-tags">
+          <span class="coll-tag">Polished</span>
+          <span class="coll-tag">Honed</span>
+          <span class="coll-tag">Fluted</span>
+          <span class="coll-tag">Textured</span>
+        </div>
+        <p class="coll-card-desc">Premium marbles with unique veining and rich colour variations — Calacatta, Statuario, Carrara, and more. Timeless elegance for countertops, flooring, wall cladding, and decorative elements in both classic and contemporary interiors.</p>
+        <div class="coll-card-uses">Best for: Countertops · Flooring · Feature Walls · Bathrooms</div>
+        <div class="coll-card-actions">
+          <a href="https://tuscanymarbles.com/marble-collection/" target="_blank" class="coll-btn-primary">View Collection</a>
+          <a href="https://wa.me/628197653888" target="_blank" class="coll-btn-ghost">Request Sample</a>
+        </div>
       </div>
     </div>
-    <div class="stone-card">
-      <img src="https://images.unsplash.com/photo-1604014237800-1c9102c219da?w=600&q=80" alt="Onyx" />
-      <div class="stone-card-label">
-        <div class="stone-name">Onyx</div>
-        <div class="stone-sub">Translucent · Dramatic</div>
+
+    <!-- GRANITE -->
+    <div class="coll-card" data-category="natural">
+      <div class="coll-card-img">
+        <img src="https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?w=700&q=80" alt="Granite Collection" loading="lazy" />
+      </div>
+      <div class="coll-card-body">
+        <div class="coll-card-name">Granite Collection</div>
+        <div class="coll-card-tags">
+          <span class="coll-tag">Polished</span>
+          <span class="coll-tag">Flamed</span>
+          <span class="coll-tag">Brushed</span>
+        </div>
+        <p class="coll-card-desc">One of the hardest natural stones available, granite offers unmatched durability and a dramatic crystalline aesthetic. Ideal for high-traffic surfaces that need to perform as beautifully as they look.</p>
+        <div class="coll-card-uses">Best for: Kitchen Countertops · Exterior Cladding · Commercial Flooring</div>
+        <div class="coll-card-actions">
+          <a href="https://tuscanymarbles.com/granite-collection/" target="_blank" class="coll-btn-primary">View Collection</a>
+          <a href="https://wa.me/628197653888" target="_blank" class="coll-btn-ghost">Request Sample</a>
+        </div>
       </div>
     </div>
-    <div class="stone-card">
-      <img src="https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?w=600&q=80" alt="Granite" />
-      <div class="stone-card-label">
-        <div class="stone-name">Granite</div>
-        <div class="stone-sub">Robust · High-Traffic</div>
+
+    <!-- ONYX -->
+    <div class="coll-card" data-category="natural">
+      <div class="coll-card-img">
+        <img src="https://images.unsplash.com/photo-1604014237800-1c9102c219da?w=700&q=80" alt="Onyx Collection" loading="lazy" />
+      </div>
+      <div class="coll-card-body">
+        <div class="coll-card-name">Onyx Collection</div>
+        <div class="coll-card-tags">
+          <span class="coll-tag">Backlit</span>
+          <span class="coll-tag">Translucent</span>
+          <span class="coll-tag">Polished</span>
+        </div>
+        <p class="coll-card-desc">Rare and dramatic, onyx is prized for its translucency and intense banded colouration. When backlit, it transforms into a glowing statement — making it the stone of choice for luxury feature walls, reception desks, and bar fronts.</p>
+        <div class="coll-card-uses">Best for: Feature Walls · Bar Fronts · Reception Desks · Luxury Interiors</div>
+        <div class="coll-card-actions">
+          <a href="https://tuscanymarbles.com/onyx-collection/" target="_blank" class="coll-btn-primary">View Collection</a>
+          <a href="https://wa.me/628197653888" target="_blank" class="coll-btn-ghost">Request Sample</a>
+        </div>
       </div>
     </div>
-    <div class="stone-card">
-      <img src="https://images.unsplash.com/photo-1585664811087-47f65abbad64?w=600&q=80" alt="Travertine" />
-      <div class="stone-card-label">
-        <div class="stone-name">Travertine</div>
-        <div class="stone-sub">Warm · Textured Character</div>
+
+    <!-- TRAVERTINE -->
+    <div class="coll-card" data-category="natural">
+      <div class="coll-card-img">
+        <img src="https://images.unsplash.com/photo-1585664811087-47f65abbad64?w=700&q=80" alt="Travertine Collection" loading="lazy" />
+      </div>
+      <div class="coll-card-body">
+        <div class="coll-card-name">Travertine Collection</div>
+        <div class="coll-card-tags">
+          <span class="coll-tag">Filled &amp; Honed</span>
+          <span class="coll-tag">Tumbled</span>
+          <span class="coll-tag">Cross-cut</span>
+        </div>
+        <p class="coll-card-desc">Warm, textured, and deeply organic — travertine's natural pores and tonal variation give spaces an earthy sophistication. A staple of Mediterranean architecture and increasingly popular in resort and spa environments.</p>
+        <div class="coll-card-uses">Best for: Bathroom Tiles · Pool Surrounds · Wall Cladding · Spa Interiors</div>
+        <div class="coll-card-actions">
+          <a href="https://tuscanymarbles.com/travertine-collection/" target="_blank" class="coll-btn-primary">View Collection</a>
+          <a href="https://wa.me/628197653888" target="_blank" class="coll-btn-ghost">Request Sample</a>
+        </div>
       </div>
     </div>
-    <div class="stone-card">
-      <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=600&q=80" alt="Quartzite" />
-      <div class="stone-card-label">
-        <div class="stone-name">Quartzite</div>
-        <div class="stone-sub">Durable · Natural Patterns</div>
+
+    <!-- QUARTZITE -->
+    <div class="coll-card" data-category="natural">
+      <div class="coll-card-img">
+        <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=700&q=80" alt="Quartzite Collection" loading="lazy" />
+      </div>
+      <div class="coll-card-body">
+        <div class="coll-card-name">Quartzite Collection</div>
+        <div class="coll-card-tags">
+          <span class="coll-tag">Polished</span>
+          <span class="coll-tag">Leathered</span>
+          <span class="coll-tag">Brushed</span>
+        </div>
+        <p class="coll-card-desc">Stronger than marble and more visually striking than granite, quartzite offers the best of both worlds. Its sweeping patterns and silica-rich composition make it a premium choice for large-format slabs and statement surfaces.</p>
+        <div class="coll-card-uses">Best for: Kitchen Islands · Large-Format Flooring · Wall Panels</div>
+        <div class="coll-card-actions">
+          <a href="https://tuscanymarbles.com/quartzite-collection/" target="_blank" class="coll-btn-primary">View Collection</a>
+          <a href="https://wa.me/628197653888" target="_blank" class="coll-btn-ghost">Request Sample</a>
+        </div>
       </div>
     </div>
-    <div class="stone-card">
-      <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=600&q=80" alt="Semi-Precious" />
-      <div class="stone-card-label">
-        <div class="stone-name">Semi-Precious</div>
-        <div class="stone-sub">Agate · Amethyst · Jasper</div>
+
+    <!-- LIMESTONE -->
+    <div class="coll-card" data-category="natural">
+      <div class="coll-card-img">
+        <img src="https://images.unsplash.com/photo-1558618047-3e5e6e5e5e5e?w=700&q=80" alt="Limestone Collection" loading="lazy"
+          onerror="this.src='https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=700&q=80'" />
+      </div>
+      <div class="coll-card-body">
+        <div class="coll-card-name">Limestone Collection</div>
+        <div class="coll-card-tags">
+          <span class="coll-tag">Honed</span>
+          <span class="coll-tag">Sandblasted</span>
+          <span class="coll-tag">Brushed</span>
+        </div>
+        <p class="coll-card-desc">Soft, muted, and endlessly versatile, limestone brings a quiet sophistication to any interior. Its consistent tone makes it ideal for minimal, refined spaces where the architecture does the talking.</p>
+        <div class="coll-card-uses">Best for: Hotel Lobbies · Flooring · Exterior Paving · Feature Walls</div>
+        <div class="coll-card-actions">
+          <a href="https://tuscanymarbles.com/limestone-collection/" target="_blank" class="coll-btn-primary">View Collection</a>
+          <a href="https://wa.me/628197653888" target="_blank" class="coll-btn-ghost">Request Sample</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SANDSTONE -->
+    <div class="coll-card" data-category="natural">
+      <div class="coll-card-img">
+        <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=700&q=80" alt="Sandstone Collection" loading="lazy" />
+      </div>
+      <div class="coll-card-body">
+        <div class="coll-card-name">Sandstone Collection</div>
+        <div class="coll-card-tags">
+          <span class="coll-tag">Natural Split</span>
+          <span class="coll-tag">Sawn</span>
+          <span class="coll-tag">Brushed</span>
+        </div>
+        <p class="coll-card-desc">With its warm, sun-baked tones and natural layered texture, sandstone evokes the landscape it came from. Durable and slip-resistant, it's especially suited to outdoor and tropical environments.</p>
+        <div class="coll-card-uses">Best for: Outdoor Paving · Garden Walls · Tropical Villas · Pool Areas</div>
+        <div class="coll-card-actions">
+          <a href="https://tuscanymarbles.com/standstone-collection/" target="_blank" class="coll-btn-primary">View Collection</a>
+          <a href="https://wa.me/628197653888" target="_blank" class="coll-btn-ghost">Request Sample</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /natural-grid -->
+
+  <!-- SEMI-PRECIOUS -->
+  <p class="coll-category-title" data-cat="semi">Semi-Precious Stone</p>
+  <div class="coll-grid" id="semi-grid">
+
+    <div class="coll-card" data-category="semi" style="grid-column: 1 / 3;">
+      <div style="display:grid; grid-template-columns: 1fr 1fr;">
+        <div class="coll-card-img" style="height:100%;">
+          <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=700&q=80" alt="Semi-Precious Stones" loading="lazy" style="height:360px;" />
+        </div>
+        <div class="coll-card-body" style="padding: 40px 40px;">
+          <div class="coll-card-name" style="font-size:30px;">Semi-Precious Stone Collection</div>
+          <div class="coll-card-tags" style="margin-bottom:18px;">
+            <span class="coll-tag">Agate</span>
+            <span class="coll-tag">Amethyst</span>
+            <span class="coll-tag">Jasper</span>
+            <span class="coll-tag">Tiger's Eye</span>
+            <span class="coll-tag">Malachite</span>
+          </div>
+          <p class="coll-card-desc" style="font-size:14px;">Exotic and rare, our semi-precious stones are crafted from minerals sourced from across the globe. Their vibrant colours and striking geological patterns create surfaces that are as unique as fingerprints. Many varieties are translucent — when backlit, they produce an otherworldly glow that elevates any luxury space.</p>
+          <div class="coll-card-uses">Best for: Statement Countertops · Feature Walls · Luxury Decor · Backlit Panels</div>
+          <div class="coll-card-actions">
+            <a href="https://tuscanymarbles.com/semi-precious-stone-collection/" target="_blank" class="coll-btn-primary">View Collection</a>
+            <a href="https://wa.me/628197653888" target="_blank" class="coll-btn-ghost">Request Sample</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /semi-grid -->
+
+  <!-- ENGINEERED -->
+  <p class="coll-category-title" data-cat="engineered">Engineered Stone</p>
+  <div class="coll-grid" id="engineered-grid">
+
+    <!-- DEKTON -->
+    <div class="coll-card" data-category="engineered">
+      <div class="coll-card-img">
+        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&q=80" alt="Dekton Surface" loading="lazy" />
+        <span class="coll-card-badge">25-Year Warranty</span>
+      </div>
+      <div class="coll-card-body">
+        <div class="coll-card-name">Dekton®</div>
+        <div class="coll-card-tags">
+          <span class="coll-tag">Ultra-Compact</span>
+          <span class="coll-tag">UV Resistant</span>
+          <span class="coll-tag">Zero Porosity</span>
+          <span class="coll-tag">Scratch Resistant</span>
+        </div>
+        <p class="coll-card-desc">Dekton achieves in hours what nature takes thousands of years to create. Its patented TSP process transforms mineral particles into an ultra-compact porcelain surface with unmatched performance — scratch-proof, stain-proof, and UV-stable for indoor and outdoor use. Available in ultragloss, matte, and velvety textures with a 25-year warranty.</p>
+        <div class="coll-card-uses">Best for: Kitchen Countertops · Outdoor Surfaces · Facades · High-Traffic Flooring</div>
+        <div class="coll-card-actions">
+          <a href="https://tuscanymarbles.com/dekton/" target="_blank" class="coll-btn-primary">View Collection</a>
+          <a href="https://wa.me/628197653888" target="_blank" class="coll-btn-ghost">Request Sample</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SILESTONE -->
+    <div class="coll-card" data-category="engineered">
+      <div class="coll-card-img">
+        <img src="https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=700&q=80" alt="Silestone Surface" loading="lazy" />
+      </div>
+      <div class="coll-card-body">
+        <div class="coll-card-name">Silestone®</div>
+        <div class="coll-card-tags">
+          <span class="coll-tag">Quartz-based</span>
+          <span class="coll-tag">HybriQ+®</span>
+          <span class="coll-tag">Stain Resistant</span>
+          <span class="coll-tag">Hygienic</span>
+        </div>
+        <p class="coll-card-desc">Silestone is a premium quartz surface engineered for beauty and endurance. Its HybriQ+® technology combines recycled quartz with hybrid mineral content, delivering surfaces that are non-porous, highly resistant to staining, and available in an extensive colour palette that mirrors natural stone.</p>
+        <div class="coll-card-uses">Best for: Kitchen Countertops · Bathroom Vanities · Wall Cladding</div>
+        <div class="coll-card-actions">
+          <a href="https://tuscanymarbles.com/silestone/" target="_blank" class="coll-btn-primary">View Collection</a>
+          <a href="https://wa.me/628197653888" target="_blank" class="coll-btn-ghost">Request Sample</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SICIS -->
+    <div class="coll-card" data-category="engineered">
+      <div class="coll-card-img">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="SICIS Mosaic" loading="lazy" />
+      </div>
+      <div class="coll-card-body">
+        <div class="coll-card-name">SICIS Mosaic</div>
+        <div class="coll-card-tags">
+          <span class="coll-tag">Glass Mosaic</span>
+          <span class="coll-tag">Stone Mosaic</span>
+          <span class="coll-tag">Custom Pattern</span>
+          <span class="coll-tag">Art Installation</span>
+        </div>
+        <p class="coll-card-desc">SICIS represents the highest expression of mosaic art — combining centuries of Venetian craft with contemporary design. From intricate geometric patterns to bespoke artistic murals, SICIS mosaic tiles transform walls, floors, and pools into works of art.</p>
+        <div class="coll-card-uses">Best for: Pools · Feature Walls · Luxury Bathrooms · Art Installations</div>
+        <div class="coll-card-actions">
+          <a href="https://tuscanymarbles.com/sicis/" target="_blank" class="coll-btn-primary">View Collection</a>
+          <a href="https://wa.me/628197653888" target="_blank" class="coll-btn-ghost">Request Sample</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /engineered-grid -->
+
+  <!-- SOURCING BANNER -->
+  <div class="coll-sourcing">
+    <div>
+      <h3>Ethically Sourced,<br/><em style="font-style:italic; color:var(--beige)">Rigorously Curated</em></h3>
+      <p>Every slab in our portfolio is sourced from quarries that prioritise environmental preservation and fair labour practices. Each material undergoes strict quality control before it arrives at your project — ensuring consistency, durability, and an unparalleled aesthetic from the first slab to the last.</p>
+    </div>
+    <div class="sourcing-stats">
+      <div>
+        <div class="sourcing-stat-num">850+</div>
+        <div class="sourcing-stat-label">Stone Varieties</div>
+      </div>
+      <div>
+        <div class="sourcing-stat-num">12+</div>
+        <div class="sourcing-stat-label">Countries of Origin</div>
+      </div>
+      <div>
+        <div class="sourcing-stat-num">9</div>
+        <div class="sourcing-stat-label">Material Categories</div>
+      </div>
+      <div>
+        <div class="sourcing-stat-num">100%</div>
+        <div class="sourcing-stat-label">Quality Inspected</div>
       </div>
     </div>
   </div>
 
   <div class="collections-cta">
-    <a href="https://tuscanymarbles.com/collections/" class="btn-primary" target="_blank" style="margin-right:16px">View Full Collections</a>
-    <a href="https://wa.me/628197653888" target="_blank" class="btn-ghost" style="border-color:rgba(107,101,96,0.35); color:var(--charcoal)">Request Samples</a>
+    <a href="https://wa.me/628197653888" target="_blank" class="btn-primary" style="margin-right:16px">Request Samples via WhatsApp</a>
+    <a href="#contact" class="btn-ghost" style="border-color:rgba(107,101,96,0.35); color:var(--charcoal)">Send a Project Brief</a>
   </div>
 </section>
 
@@ -766,27 +1118,32 @@
   </div>
   <div class="contact-form">
     <h3>Send Us a Project Brief</h3>
+    <p style="font-size:13px; color:var(--slate); margin-bottom:28px; line-height:1.6;">Fill in your details and we'll open WhatsApp with your brief ready to send — no copy-pasting needed.</p>
+
+    <!-- Validation error banner -->
+    <div id="form-error" style="display:none; background:rgba(180,60,40,0.12); border:1px solid rgba(180,60,40,0.35); color:#c0392b; padding:12px 16px; font-size:13px; margin-bottom:20px;"></div>
+
     <div class="form-row">
       <div class="form-group">
-        <label>First Name</label>
-        <input type="text" placeholder="Andika" />
+        <label for="f-fname">First Name <span style="color:var(--gold)">*</span></label>
+        <input id="f-fname" type="text" placeholder="Andika" />
       </div>
       <div class="form-group">
-        <label>Last Name</label>
-        <input type="text" placeholder="Wijaya" />
+        <label for="f-lname">Last Name</label>
+        <input id="f-lname" type="text" placeholder="Wijaya" />
       </div>
     </div>
     <div class="form-group">
-      <label>Email Address</label>
-      <input type="email" placeholder="you@example.com" />
+      <label for="f-email">Email Address</label>
+      <input id="f-email" type="email" placeholder="you@example.com" />
     </div>
     <div class="form-group">
-      <label>Phone / WhatsApp</label>
-      <input type="tel" placeholder="+62 812 3456 7890" />
+      <label for="f-phone">Phone / WhatsApp</label>
+      <input id="f-phone" type="tel" placeholder="+62 812 3456 7890" />
     </div>
     <div class="form-group">
-      <label>Project Type</label>
-      <select>
+      <label for="f-type">Project Type <span style="color:var(--gold)">*</span></label>
+      <select id="f-type">
         <option value="">Select project type</option>
         <option>Residential — Home Renovation</option>
         <option>Residential — New Build</option>
@@ -797,10 +1154,55 @@
       </select>
     </div>
     <div class="form-group">
-      <label>Tell us about your project</label>
-      <textarea placeholder="Describe the space, materials you're considering, timeline, and any specific requirements..."></textarea>
+      <label for="f-stone">Stone / Material Interest</label>
+      <select id="f-stone">
+        <option value="">Not sure yet</option>
+        <option>Marble</option>
+        <option>Granite</option>
+        <option>Onyx</option>
+        <option>Travertine</option>
+        <option>Quartzite</option>
+        <option>Limestone</option>
+        <option>Sandstone</option>
+        <option>Semi-Precious Stone</option>
+        <option>Dekton®</option>
+        <option>Silestone®</option>
+        <option>SICIS Mosaic</option>
+        <option>Multiple / Unsure</option>
+      </select>
     </div>
-    <button class="form-submit" onclick="this.textContent='Sent! We\'ll be in touch shortly.'; this.style.background='var(--gold)'; this.style.color='var(--charcoal)';">Send Project Brief</button>
+    <div class="form-group">
+      <label for="f-budget">Estimated Budget (IDR)</label>
+      <select id="f-budget">
+        <option value="">Prefer not to say</option>
+        <option>Under Rp 50 juta</option>
+        <option>Rp 50 – 150 juta</option>
+        <option>Rp 150 – 500 juta</option>
+        <option>Rp 500 juta – 1 miliar</option>
+        <option>Above Rp 1 miliar</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="f-message">Tell us about your project <span style="color:var(--gold)">*</span></label>
+      <textarea id="f-message" placeholder="Describe the space, materials you're considering, dimensions, timeline, and any specific requirements..."></textarea>
+    </div>
+
+    <!-- Preview pane -->
+    <div id="wa-preview" style="display:none; background:rgba(37,211,102,0.07); border:1px solid rgba(37,211,102,0.25); padding:18px 20px; margin-bottom:20px; border-radius:2px;">
+      <div style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#25D366; margin-bottom:10px;">WhatsApp Message Preview</div>
+      <pre id="wa-preview-text" style="font-family:'Inter',sans-serif; font-size:12px; color:var(--charcoal); white-space:pre-wrap; line-height:1.7;"></pre>
+    </div>
+
+    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+      <button class="form-submit" id="btn-preview" onclick="previewWA()" style="flex:1; background:var(--charcoal); border:1px solid rgba(247,243,238,0.15);">
+        Preview Message
+      </button>
+      <button class="form-submit" id="btn-send" onclick="sendToWhatsApp()" style="flex:2; background:#25D366; display:flex; align-items:center; justify-content:center; gap:10px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Send via WhatsApp
+      </button>
+    </div>
+    <p style="font-size:11px; color:var(--slate); margin-top:14px; line-height:1.6;">Clicking "Send via WhatsApp" will open WhatsApp with your completed brief pre-filled and ready to send to our team.</p>
   </div>
 </section>
 
@@ -848,6 +1250,84 @@
 </a>
 
 <script>
+  // WhatsApp form
+  function buildMessage() {
+    const fname   = document.getElementById('f-fname').value.trim();
+    const lname   = document.getElementById('f-lname').value.trim();
+    const email   = document.getElementById('f-email').value.trim();
+    const phone   = document.getElementById('f-phone').value.trim();
+    const type    = document.getElementById('f-type').value;
+    const stone   = document.getElementById('f-stone').value;
+    const budget  = document.getElementById('f-budget').value;
+    const message = document.getElementById('f-message').value.trim();
+    return { fname, lname, email, phone, type, stone, budget, message };
+  }
+
+  function validate() {
+    const { fname, type, message } = buildMessage();
+    const errors = [];
+    if (!fname) errors.push('Please enter your first name.');
+    if (!type)  errors.push('Please select a project type.');
+    if (!message) errors.push('Please tell us a bit about your project.');
+    return errors;
+  }
+
+  function formatWAMessage({ fname, lname, email, phone, type, stone, budget, message }) {
+    const name = [fname, lname].filter(Boolean).join(' ');
+    let lines = [];
+    lines.push('Halo Tuscany Stone Boutique! 👋');
+    lines.push('');
+    lines.push('Saya ingin mengirimkan project brief:');
+    lines.push('');
+    lines.push('*PROJECT BRIEF*');
+    lines.push('─────────────────────');
+    lines.push(`👤 Nama       : ${name}`);
+    if (email)  lines.push(`📧 Email      : ${email}`);
+    if (phone)  lines.push(`📱 Telepon    : ${phone}`);
+    lines.push(`🏗️ Tipe Proyek : ${type}`);
+    if (stone && stone !== 'Not sure yet')
+                lines.push(`🪨 Material   : ${stone}`);
+    if (budget && budget !== 'Prefer not to say')
+                lines.push(`💰 Estimasi Budget : ${budget}`);
+    lines.push('─────────────────────');
+    lines.push('');
+    lines.push('*Detail Proyek:*');
+    lines.push(message);
+    lines.push('');
+    lines.push('Mohon informasi lebih lanjut. Terima kasih!');
+    return lines.join('\n');
+  }
+
+  function previewWA() {
+    const errDiv = document.getElementById('form-error');
+    const errors = validate();
+    if (errors.length) {
+      errDiv.style.display = 'block';
+      errDiv.textContent = errors.join(' ');
+      return;
+    }
+    errDiv.style.display = 'none';
+    const text = formatWAMessage(buildMessage());
+    document.getElementById('wa-preview-text').textContent = text;
+    const preview = document.getElementById('wa-preview');
+    preview.style.display = 'block';
+    preview.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function sendToWhatsApp() {
+    const errDiv = document.getElementById('form-error');
+    const errors = validate();
+    if (errors.length) {
+      errDiv.style.display = 'block';
+      errDiv.textContent = errors.join(' ');
+      return;
+    }
+    errDiv.style.display = 'none';
+    const text = formatWAMessage(buildMessage());
+    const encoded = encodeURIComponent(text);
+    window.open('https://wa.me/628197653888?text=' + encoded, '_blank');
+  }
+
   // Sticky nav
   const nav = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
@@ -862,6 +1342,35 @@
     btn.classList.add('active');
   }
 
+  // Collections filter
+  function filterColl(cat, btn) {
+    document.querySelectorAll('.coll-filter').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const cards = document.querySelectorAll('.coll-card');
+    const titles = document.querySelectorAll('.coll-category-title');
+    const grids = document.querySelectorAll('.coll-grid');
+
+    cards.forEach(card => {
+      if (cat === 'all' || card.dataset.category === cat) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    // Show/hide category titles and grids based on whether any card is visible in them
+    titles.forEach(title => {
+      const catName = title.dataset.cat;
+      const gridId = catName + '-grid';
+      const grid = document.getElementById(gridId);
+      if (!grid) return;
+      const visibleCards = grid.querySelectorAll('.coll-card:not(.hidden)');
+      const show = cat === 'all' || cat === catName;
+      title.style.display = show ? '' : 'none';
+      grid.style.display = show ? '' : 'none';
+    });
+  }
+
   // Scroll reveal (lightweight)
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -872,7 +1381,7 @@
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('.stone-card, .why-item, .step, .testi-card').forEach(el => {
+  document.querySelectorAll('.stone-card, .why-item, .step, .testi-card, .coll-card').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(24px)';
     el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
