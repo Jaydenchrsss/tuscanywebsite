@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tuscany Stone Boutique — Premium Natural Stone, Jakarta</title>
+<meta name="description" content="Tuscany offers 850+ premium natural stones — marble, granite, onyx, travertine, quartzite and more. Trusted by architects, designers, and homeowners across Indonesia." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --charcoal: #1A1814;
+    --ivory: #F7F3EE;
+    --beige: #C9B99A;
+    --gold: #A8884A;
+    --slate: #6B6560;
+    --warm-white: #FDFAF6;
+    --dark-brown: #2E2820;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--warm-white);
+    color: var(--charcoal);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 48px;
+    background: transparent;
+    transition: background 0.4s, box-shadow 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(26,24,20,0.97);
+    box-shadow: 0 1px 0 rgba(168,136,74,0.2);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 300; letter-spacing: 0.18em;
+    color: var(--ivory); text-decoration: none; text-transform: uppercase;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    color: rgba(247,243,238,0.75);
+    text-decoration: none; font-size: 12px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold); color: var(--charcoal);
+    padding: 10px 22px; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.2s, color 0.2s;
+  }
+  .nav-cta:hover { background: var(--ivory); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    position: relative; overflow: hidden;
+    background: var(--charcoal);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1800&q=80') center/cover no-repeat;
+    transform: scale(1.05);
+    animation: slowZoom 18s ease-in-out infinite alternate;
+    opacity: 0.55;
+  }
+  @keyframes slowZoom { from { transform: scale(1.05); } to { transform: scale(1.12); } }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,24,20,0.95) 0%, rgba(26,24,20,0.3) 60%, transparent 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 80px 80px;
+    max-width: 900px;
+  }
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 40px; height: 1px; background: var(--gold);
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 7vw, 96px);
+    font-weight: 300; line-height: 1.05;
+    color: var(--ivory); margin-bottom: 28px;
+  }
+  .hero-title em { font-style: italic; color: var(--beige); }
+  .hero-sub {
+    font-size: 15px; font-weight: 300; color: rgba(247,243,238,0.7);
+    max-width: 520px; line-height: 1.75; margin-bottom: 44px;
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .btn-primary {
+    background: var(--gold); color: var(--charcoal);
+    padding: 16px 36px; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--beige); transform: translateY(-1px); }
+  .btn-ghost {
+    border: 1px solid rgba(247,243,238,0.35); color: var(--ivory);
+    padding: 15px 36px; font-size: 12px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    text-decoration: none; transition: border-color 0.2s, background 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--gold); background: rgba(168,136,74,0.08); }
+  .hero-stats {
+    position: absolute; right: 80px; bottom: 80px; z-index: 2;
+    display: flex; flex-direction: column; gap: 28px; align-items: flex-end;
+  }
+  .stat { text-align: right; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px; font-weight: 300; color: var(--ivory); line-height: 1;
+  }
+  .stat-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--slate); margin-top: 4px; }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    background: var(--gold); overflow: hidden;
+    padding: 14px 0;
+  }
+  .marquee-track {
+    display: flex; gap: 0; animation: marqueeScroll 22s linear infinite; width: max-content;
+  }
+  .marquee-item {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--charcoal);
+    padding: 0 36px; white-space: nowrap;
+    display: flex; align-items: center; gap: 36px;
+  }
+  .marquee-item::after { content: '◆'; font-size: 7px; color: rgba(26,24,20,0.4); }
+  @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 100px 80px; }
+  .section-label {
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .section-label::before { content: ''; width: 30px; height: 1px; background: var(--gold); display: block; }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 60px); font-weight: 300; line-height: 1.1;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--charcoal);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  #about .about-image {
+    position: relative;
+  }
+  #about .about-image img {
+    width: 100%; height: 540px; object-fit: cover; display: block;
+  }
+  #about .about-image::after {
+    content: '';
+    position: absolute; bottom: -20px; right: -20px;
+    width: 60%; height: 60%;
+    border: 1px solid rgba(168,136,74,0.3);
+    pointer-events: none;
+  }
+  #about .about-text h2 { color: var(--ivory); margin-bottom: 28px; }
+  #about .about-text p {
+    font-size: 15px; color: rgba(247,243,238,0.65); line-height: 1.85;
+    margin-bottom: 20px; font-weight: 300;
+  }
+  #about .about-text .signature {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 20px; color: var(--beige); margin-top: 36px; margin-bottom: 36px;
+    padding-left: 24px; border-left: 2px solid var(--gold);
+    line-height: 1.5;
+  }
+
+  /* ── COLLECTIONS ── */
+  #collections { background: var(--warm-white); }
+  #collections .collections-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 60px;
+  }
+  #collections h2 { color: var(--charcoal); max-width: 400px; }
+  .collections-intro {
+    font-size: 14px; color: var(--slate); max-width: 340px; line-height: 1.75;
+  }
+  .stone-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    gap: 3px;
+  }
+  .stone-card {
+    position: relative; overflow: hidden; cursor: pointer;
+    background: var(--charcoal);
+  }
+  .stone-card:first-child {
+    grid-column: 1 / 3; grid-row: 1 / 2;
+  }
+  .stone-card img {
+    width: 100%; display: block;
+    transition: transform 0.6s ease, opacity 0.4s;
+    object-fit: cover;
+  }
+  .stone-card:first-child img { height: 420px; }
+  .stone-card:not(:first-child) img { height: 210px; }
+  .stone-card:hover img { transform: scale(1.05); opacity: 0.7; }
+  .stone-card-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 20px 22px 18px;
+    background: linear-gradient(transparent, rgba(26,24,20,0.9));
+  }
+  .stone-name {
+    font-family: 'Cormorant Garamond', serif; font-size: 20px;
+    color: var(--ivory); font-weight: 300;
+  }
+  .stone-sub { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--beige); margin-top: 4px; }
+  .collections-cta { text-align: center; margin-top: 50px; }
+
+  /* ── WHY TUSCANY ── */
+  #why {
+    background: var(--ivory);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0; align-items: stretch;
+  }
+  .why-image { position: relative; }
+  .why-image img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 500px; }
+  .why-content { padding: 80px 60px; background: var(--ivory); }
+  .why-content h2 { color: var(--charcoal); margin-bottom: 48px; }
+  .why-list { display: flex; flex-direction: column; gap: 36px; }
+  .why-item { display: flex; gap: 22px; align-items: flex-start; }
+  .why-icon {
+    width: 44px; height: 44px; background: var(--charcoal);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; color: var(--gold); font-size: 18px;
+  }
+  .why-item h4 {
+    font-family: 'Cormorant Garamond', serif; font-size: 20px;
+    font-weight: 600; color: var(--charcoal); margin-bottom: 8px;
+  }
+  .why-item p { font-size: 13px; color: var(--slate); line-height: 1.75; }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--charcoal); }
+  #projects h2 { color: var(--ivory); margin-bottom: 8px; }
+  #projects .proj-lead { color: rgba(247,243,238,0.55); font-size: 14px; margin-bottom: 56px; max-width: 500px; }
+  .project-tabs { display: flex; gap: 0; margin-bottom: 40px; border-bottom: 1px solid rgba(247,243,238,0.1); }
+  .proj-tab {
+    padding: 14px 28px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(247,243,238,0.45); cursor: pointer; transition: color 0.2s;
+    border-bottom: 2px solid transparent; margin-bottom: -1px;
+    background: none; border-top: none; border-left: none; border-right: none; font-family: inherit;
+  }
+  .proj-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .project-panels { }
+  .proj-panel { display: none; }
+  .proj-panel.active { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
+  .proj-img { position: relative; overflow: hidden; }
+  .proj-img img { width: 100%; height: 320px; object-fit: cover; display: block; transition: transform 0.5s; }
+  .proj-img:hover img { transform: scale(1.04); }
+  .proj-img-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 60px 18px 16px;
+    background: linear-gradient(transparent, rgba(26,24,20,0.85));
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--beige);
+  }
+
+  /* ── PROCESS ── */
+  #process { background: var(--warm-white); }
+  #process h2 { color: var(--charcoal); text-align: center; margin-bottom: 16px; }
+  #process .proc-sub { text-align: center; color: var(--slate); font-size: 14px; margin-bottom: 64px; }
+  .process-steps {
+    display: grid; grid-template-columns: repeat(4,1fr); gap: 2px;
+  }
+  .step {
+    padding: 44px 32px; background: var(--ivory);
+    position: relative; overflow: hidden;
+  }
+  .step:hover { background: var(--charcoal); }
+  .step:hover .step-num, .step:hover h4, .step:hover p { color: var(--ivory); }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif; font-size: 72px; font-weight: 300;
+    color: rgba(168,136,74,0.18); line-height: 1; margin-bottom: 24px;
+    transition: color 0.3s;
+  }
+  .step h4 {
+    font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600;
+    color: var(--charcoal); margin-bottom: 12px; transition: color 0.3s;
+  }
+  .step p { font-size: 13px; color: var(--slate); line-height: 1.75; transition: color 0.3s; }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials {
+    background: var(--charcoal);
+    text-align: center; padding: 100px 120px;
+  }
+  #testimonials h2 { color: var(--ivory); margin-bottom: 60px; }
+  .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+  .testi-card {
+    background: rgba(247,243,238,0.04);
+    border: 1px solid rgba(168,136,74,0.15);
+    padding: 40px 32px; text-align: left;
+  }
+  .testi-stars { color: var(--gold); font-size: 13px; margin-bottom: 20px; letter-spacing: 2px; }
+  .testi-text {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 18px; color: rgba(247,243,238,0.8); line-height: 1.6; margin-bottom: 28px;
+  }
+  .testi-author { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--beige); }
+  .testi-role { font-size: 11px; color: var(--slate); margin-top: 4px; }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--ivory);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  }
+  .contact-info {
+    background: var(--charcoal); padding: 80px 60px;
+  }
+  .contact-info h2 { color: var(--ivory); margin-bottom: 16px; }
+  .contact-info .sub { color: rgba(247,243,238,0.55); font-size: 14px; margin-bottom: 56px; line-height: 1.7; }
+  .contact-detail { margin-bottom: 32px; }
+  .contact-detail-label { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .contact-detail-val { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--ivory); }
+  .contact-detail-val a { color: var(--ivory); text-decoration: none; }
+  .wa-button {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: #25D366; color: #fff;
+    padding: 16px 32px; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; margin-top: 16px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .wa-button:hover { background: #1ebe5a; transform: translateY(-1px); }
+  .contact-form { padding: 80px 60px; background: var(--ivory); }
+  .contact-form h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 32px;
+    color: var(--charcoal); margin-bottom: 36px; font-weight: 300;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .form-group { margin-bottom: 16px; }
+  label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--slate); display: block; margin-bottom: 8px; }
+  input, select, textarea {
+    width: 100%; padding: 14px 16px;
+    background: var(--warm-white); border: 1px solid rgba(107,101,96,0.2);
+    font-family: 'Inter', sans-serif; font-size: 14px; color: var(--charcoal);
+    outline: none; transition: border-color 0.2s;
+    appearance: none;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--gold); }
+  textarea { resize: vertical; min-height: 120px; }
+  .form-submit {
+    background: var(--charcoal); color: var(--ivory);
+    border: none; padding: 16px 40px; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer;
+    transition: background 0.2s; font-family: inherit; width: 100%;
+    margin-top: 8px;
+  }
+  .form-submit:hover { background: var(--gold); color: var(--charcoal); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #111009; padding: 56px 80px 32px;
+    display: flex; flex-direction: column; gap: 40px;
+  }
+  .footer-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .footer-brand .logo-text {
+    font-family: 'Cormorant Garamond', serif; font-size: 28px;
+    font-weight: 300; color: var(--ivory); letter-spacing: 0.15em; text-transform: uppercase;
+  }
+  .footer-brand .logo-text span { color: var(--gold); }
+  .footer-brand .tagline { font-size: 12px; color: var(--slate); margin-top: 8px; letter-spacing: 0.1em; }
+  .footer-links { display: flex; gap: 60px; }
+  .footer-col h5 { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .footer-col a { display: block; font-size: 13px; color: rgba(247,243,238,0.5); text-decoration: none; margin-bottom: 10px; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--ivory); }
+  .footer-bottom {
+    border-top: 1px solid rgba(247,243,238,0.06); padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-bottom p { font-size: 11px; color: rgba(247,243,238,0.28); }
+
+  /* ── FLOATING WA ── */
+  .wa-float {
+    position: fixed; bottom: 32px; right: 32px; z-index: 999;
+    background: #25D366; color: #fff;
+    width: 56px; height: 56px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; font-size: 26px; box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.5); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 18px 24px; }
+    .nav-links, .nav-cta { display: none; }
+    section { padding: 70px 24px; }
+    .hero-content { padding: 0 24px 60px; }
+    .hero-stats { display: none; }
+    #about { grid-template-columns: 1fr; gap: 40px; }
+    #about .about-image::after { display: none; }
+    #about .about-image img { height: 300px; }
+    .stone-grid { grid-template-columns: 1fr 1fr; }
+    .stone-card:first-child { grid-column: 1 / 3; }
+    .stone-card:first-child img { height: 280px; }
+    .stone-card:not(:first-child) img { height: 160px; }
+    #why { grid-template-columns: 1fr; }
+    .why-image { display: none; }
+    .why-content { padding: 60px 24px; }
+    .collections-header { flex-direction: column; gap: 20px; }
+    .proj-panel.active { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .testi-grid { grid-template-columns: 1fr; }
+    #testimonials { padding: 70px 24px; }
+    #contact { grid-template-columns: 1fr; }
+    .contact-info { padding: 60px 24px; }
+    .contact-form { padding: 60px 24px; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { padding: 48px 24px 24px; }
+    .footer-top { flex-direction: column; gap: 32px; }
+    .footer-links { flex-wrap: wrap; gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">TUSCANY <span>·</span> STONE BOUTIQUE</a>
+  <ul class="nav-links">
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#projects">Our Works</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="https://wa.me/628197653888" target="_blank">Consult Now</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Stone Boutique · Jakarta</p>
+    <h1 class="hero-title">
+      Nature's Finest<br/>Stones, <em>Precisely<br/>Crafted</em> for You
+    </h1>
+    <p class="hero-sub">
+      Over 850 premium natural stones — marble, granite, onyx, travertine, and beyond — sourced from the world's finest quarries and delivered to your project.
+    </p>
+    <div class="hero-actions">
+      <a href="#collections" class="btn-primary">Explore Collections</a>
+      <a href="https://wa.me/628197653888" target="_blank" class="btn-ghost">WhatsApp Consultation</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">850+</div><div class="stat-label">Stone Varieties</div></div>
+    <div class="stat"><div class="stat-num">12+</div><div class="stat-label">Stone Origins</div></div>
+    <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Projects Delivered</div></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-item">Marble</div>
+    <div class="marquee-item">Granite</div>
+    <div class="marquee-item">Onyx</div>
+    <div class="marquee-item">Travertine</div>
+    <div class="marquee-item">Quartzite</div>
+    <div class="marquee-item">Limestone</div>
+    <div class="marquee-item">Sandstone</div>
+    <div class="marquee-item">Semi-Precious</div>
+    <div class="marquee-item">Dekton</div>
+    <div class="marquee-item">Silestone</div>
+    <div class="marquee-item">SICIS Mosaic</div>
+    <div class="marquee-item">Slate</div>
+    <!-- duplicate for seamless loop -->
+    <div class="marquee-item">Marble</div>
+    <div class="marquee-item">Granite</div>
+    <div class="marquee-item">Onyx</div>
+    <div class="marquee-item">Travertine</div>
+    <div class="marquee-item">Quartzite</div>
+    <div class="marquee-item">Limestone</div>
+    <div class="marquee-item">Sandstone</div>
+    <div class="marquee-item">Semi-Precious</div>
+    <div class="marquee-item">Dekton</div>
+    <div class="marquee-item">Silestone</div>
+    <div class="marquee-item">SICIS Mosaic</div>
+    <div class="marquee-item">Slate</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-image">
+    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=900&q=80" alt="Tuscany stone craftsmanship" loading="lazy" />
+  </div>
+  <div class="about-text">
+    <p class="section-label">Our Story</p>
+    <h2 style="color:var(--ivory)">Where Nature Meets<br/><em style="font-style:italic; color:var(--beige)">Master Craftsmanship</em></h2>
+    <p>Tuscany Stone Boutique was founded on one principle: every great space deserves materials that carry a story. We bridge the world's most exceptional quarries with architects, interior designers, and homeowners across Indonesia.</p>
+    <p>Our curated portfolio of over 850 natural and engineered stone products spans marble, granite, onyx, travertine, limestone, quartzite, and rare semi-precious materials — each rigorously selected for character, durability, and authenticity.</p>
+    <blockquote class="signature">"We don't just supply stone. We help you build something that outlasts trends."</blockquote>
+    <a href="#contact" class="btn-primary">Start a Project</a>
+  </div>
+</section>
+
+<!-- COLLECTIONS -->
+<section id="collections">
+  <div class="collections-header">
+    <div>
+      <p class="section-label">Our Materials</p>
+      <h2>850+ Stones,<br/>Every Vision Served</h2>
+    </div>
+    <p class="collections-intro">From polished marble countertops to translucent onyx feature walls — we carry the full spectrum of natural stone with expert guidance at every step.</p>
+  </div>
+
+  <div class="stone-grid">
+    <div class="stone-card">
+      <img src="https://images.unsplash.com/photo-1615971677499-5467cbab01c0?w=900&q=80" alt="Marble" />
+      <div class="stone-card-label">
+        <div class="stone-name">Marble Collection</div>
+        <div class="stone-sub">Timeless Elegance · Premium Veining</div>
+      </div>
+    </div>
+    <div class="stone-card">
+      <img src="https://images.unsplash.com/photo-1604014237800-1c9102c219da?w=600&q=80" alt="Onyx" />
+      <div class="stone-card-label">
+        <div class="stone-name">Onyx</div>
+        <div class="stone-sub">Translucent · Dramatic</div>
+      </div>
+    </div>
+    <div class="stone-card">
+      <img src="https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?w=600&q=80" alt="Granite" />
+      <div class="stone-card-label">
+        <div class="stone-name">Granite</div>
+        <div class="stone-sub">Robust · High-Traffic</div>
+      </div>
+    </div>
+    <div class="stone-card">
+      <img src="https://images.unsplash.com/photo-1585664811087-47f65abbad64?w=600&q=80" alt="Travertine" />
+      <div class="stone-card-label">
+        <div class="stone-name">Travertine</div>
+        <div class="stone-sub">Warm · Textured Character</div>
+      </div>
+    </div>
+    <div class="stone-card">
+      <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=600&q=80" alt="Quartzite" />
+      <div class="stone-card-label">
+        <div class="stone-name">Quartzite</div>
+        <div class="stone-sub">Durable · Natural Patterns</div>
+      </div>
+    </div>
+    <div class="stone-card">
+      <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=600&q=80" alt="Semi-Precious" />
+      <div class="stone-card-label">
+        <div class="stone-name">Semi-Precious</div>
+        <div class="stone-sub">Agate · Amethyst · Jasper</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="collections-cta">
+    <a href="https://tuscanymarbles.com/collections/" class="btn-primary" target="_blank" style="margin-right:16px">View Full Collections</a>
+    <a href="https://wa.me/628197653888" target="_blank" class="btn-ghost" style="border-color:rgba(107,101,96,0.35); color:var(--charcoal)">Request Samples</a>
+  </div>
+</section>
+
+<!-- WHY TUSCANY -->
+<section id="why" style="padding:0;">
+  <div class="why-image">
+    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=900&q=80" alt="Premium stone showroom" loading="lazy" />
+  </div>
+  <div class="why-content">
+    <p class="section-label">Why Tuscany</p>
+    <h2>The Standard<br/>Others Measure By</h2>
+    <div class="why-list">
+      <div class="why-item">
+        <div class="why-icon">◆</div>
+        <div>
+          <h4>Curated Global Sourcing</h4>
+          <p>Every slab is hand-selected from responsible quarries across Italy, Turkey, Brazil, and beyond — ensuring beauty with ethical integrity.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">◈</div>
+        <div>
+          <h4>Advanced Finishing Techniques</h4>
+          <p>Polished, matte, fluted, honed — our innovation lab transforms raw stone into architectural statements matched to your vision.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">◉</div>
+        <div>
+          <h4>Expert Design Consultation</h4>
+          <p>Our specialists work directly with architects and interior designers from concept through installation, at zero extra cost.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">◇</div>
+        <div>
+          <h4>Rigorous Quality Control</h4>
+          <p>Every piece undergoes strict inspection for consistency, structural integrity, and colour fidelity before reaching your site.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">Our Works</p>
+  <h2 style="color:var(--ivory)">Spaces We've<br/><em style="font-style:italic; color:var(--beige)">Transformed</em></h2>
+  <p class="proj-lead">From luxury residences to high-end retail and commercial developments — Tuscany stone speaks across every project type.</p>
+  <div class="project-tabs">
+    <button class="proj-tab active" onclick="showPanel('residential', this)">Residential</button>
+    <button class="proj-tab" onclick="showPanel('retail', this)">Retail</button>
+    <button class="proj-tab" onclick="showPanel('commercial', this)">Commercial</button>
+  </div>
+  <div id="residential" class="proj-panel active">
+    <div class="proj-img">
+      <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600&q=80" alt="Residential living room" loading="lazy" />
+      <div class="proj-img-label">Master Bath · White Marble</div>
+    </div>
+    <div class="proj-img">
+      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80" alt="Kitchen marble" loading="lazy" />
+      <div class="proj-img-label">Kitchen Island · Calacatta</div>
+    </div>
+    <div class="proj-img">
+      <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37?w=600&q=80" alt="Residential flooring" loading="lazy" />
+      <div class="proj-img-label">Grand Lobby · Travertine</div>
+    </div>
+  </div>
+  <div id="retail" class="proj-panel">
+    <div class="proj-img">
+      <img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=600&q=80" alt="Retail interior" loading="lazy" />
+      <div class="proj-img-label">Boutique Floor · Granite</div>
+    </div>
+    <div class="proj-img">
+      <img src="https://images.unsplash.com/photo-1567016432779-094069958ea5?w=600&q=80" alt="Retail feature wall" loading="lazy" />
+      <div class="proj-img-label">Feature Wall · Onyx Backlit</div>
+    </div>
+    <div class="proj-img">
+      <img src="https://images.unsplash.com/photo-1530018352490-c6eef07fd7d0?w=600&q=80" alt="Retail counter" loading="lazy" />
+      <div class="proj-img-label">Reception Counter · Quartzite</div>
+    </div>
+  </div>
+  <div id="commercial" class="proj-panel">
+    <div class="proj-img">
+      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80" alt="Commercial lobby" loading="lazy" />
+      <div class="proj-img-label">Office Lobby · Grey Marble</div>
+    </div>
+    <div class="proj-img">
+      <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=80" alt="Hotel interior" loading="lazy" />
+      <div class="proj-img-label">Hotel Corridor · Limestone</div>
+    </div>
+    <div class="proj-img">
+      <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80" alt="Commercial flooring" loading="lazy" />
+      <div class="proj-img-label">Commercial Plaza · Granite</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <p class="section-label" style="justify-content:center">How It Works</p>
+  <h2>From First Idea<br/>to Finished Space</h2>
+  <p class="proc-sub">Our simple process makes sourcing premium stone effortless.</p>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h4>Consult</h4>
+      <p>Share your project brief — our specialists help you identify the right material, finish, and format for your space.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h4>Sample</h4>
+      <p>Visit our Jakarta showroom or request samples delivered to you. See the stone, feel the texture, verify the colour in your light.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h4>Fabricate</h4>
+      <p>We cut, finish, and treat each slab to your exact specification — polished, honed, fluted, or custom profiled.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h4>Deliver</h4>
+      <p>On-time, site-ready delivery across Jakarta and nationwide. We coordinate directly with your contractor for a seamless install.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <p class="section-label" style="justify-content:center">What Clients Say</p>
+  <h2 style="color:var(--ivory); margin-bottom:60px">Trusted by<br/><em style="font-style:italic; color:var(--beige)">Designers & Homeowners</em></h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"The marble they sourced for our Villa Pantai project was extraordinary. The team's expertise made the entire specification process smooth and confident."</p>
+      <div class="testi-author">Andika Wijaya</div>
+      <div class="testi-role">Principal, Wijaya Design Studio</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"I visited three suppliers before Tuscany. Their showroom alone convinced me — and the quality of the onyx we selected exceeded every expectation."</p>
+      <div class="testi-author">Sari Kusuma</div>
+      <div class="testi-role">Homeowner, South Jakarta</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"As a contractor, I need suppliers who deliver on time and on spec. Tuscany has never let a project down. They're the only stone partner I recommend."</p>
+      <div class="testi-author">Budi Hartono</div>
+      <div class="testi-role">Director, Hartono Konstruksi</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding:0;">
+  <div class="contact-info">
+    <p class="section-label">Get In Touch</p>
+    <h2 style="color:var(--ivory)">Let's Build<br/><em style="font-style:italic;color:var(--beige)">Something Lasting</em></h2>
+    <p class="sub">Whether you're an architect specifying materials, a designer searching for that perfect slab, or a homeowner starting a renovation — we're here to help.</p>
+    <div class="contact-detail">
+      <div class="contact-detail-label">Visit Us</div>
+      <div class="contact-detail-val">Jl. Agung Karya V Blok A No. 11B<br/>Sunter Agung, Jakarta Utara 14360</div>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-detail-label">Email</div>
+      <div class="contact-detail-val"><a href="mailto:contact@tuscanymarbles.com">contact@tuscanymarbles.com</a></div>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-detail-label">Phone / WhatsApp</div>
+      <div class="contact-detail-val"><a href="https://wa.me/628197653888">+62 819 7653 888</a></div>
+    </div>
+    <a href="https://wa.me/628197653888" target="_blank" class="wa-button">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Chat on WhatsApp
+    </a>
+  </div>
+  <div class="contact-form">
+    <h3>Send Us a Project Brief</h3>
+    <div class="form-row">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" placeholder="Andika" />
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" placeholder="Wijaya" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" placeholder="you@example.com" />
+    </div>
+    <div class="form-group">
+      <label>Phone / WhatsApp</label>
+      <input type="tel" placeholder="+62 812 3456 7890" />
+    </div>
+    <div class="form-group">
+      <label>Project Type</label>
+      <select>
+        <option value="">Select project type</option>
+        <option>Residential — Home Renovation</option>
+        <option>Residential — New Build</option>
+        <option>Retail / Commercial</option>
+        <option>Hospitality</option>
+        <option>Architecture / Design Specification</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Tell us about your project</label>
+      <textarea placeholder="Describe the space, materials you're considering, timeline, and any specific requirements..."></textarea>
+    </div>
+    <button class="form-submit" onclick="this.textContent='Sent! We\'ll be in touch shortly.'; this.style.background='var(--gold)'; this.style.color='var(--charcoal)';">Send Project Brief</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo-text">TUSCANY <span>·</span> STONE BOUTIQUE</div>
+      <div class="tagline">Unveiling Nature's Story, One Slab at a Time</div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h5>Collections</h5>
+        <a href="https://tuscanymarbles.com/marble-collection/" target="_blank">Marble</a>
+        <a href="https://tuscanymarbles.com/granite-collection/" target="_blank">Granite</a>
+        <a href="https://tuscanymarbles.com/onyx-collection/" target="_blank">Onyx</a>
+        <a href="https://tuscanymarbles.com/travertine-collection/" target="_blank">Travertine</a>
+        <a href="https://tuscanymarbles.com/quartzite-collection/" target="_blank">Quartzite</a>
+        <a href="https://tuscanymarbles.com/semi-precious-stone-collection/" target="_blank">Semi-Precious</a>
+      </div>
+      <div class="footer-col">
+        <h5>Projects</h5>
+        <a href="https://tuscanymarbles.com/residential-project/" target="_blank">Residential</a>
+        <a href="https://tuscanymarbles.com/retail-project/" target="_blank">Retail</a>
+        <a href="https://tuscanymarbles.com/commercial-project/" target="_blank">Commercial</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="https://tuscanymarbles.com/about-us/" target="_blank">About Us</a>
+        <a href="https://tuscanymarbles.com/innovation/" target="_blank">Innovation</a>
+        <a href="https://tuscanymarbles.com/news/" target="_blank">News</a>
+        <a href="https://tuscanymarbles.com/contact-us/" target="_blank">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Tuscany Stone Boutique. All rights reserved. Jakarta Utara, Indonesia.</p>
+    <p>contact@tuscanymarbles.com · +62 819 7653 888</p>
+  </div>
+</footer>
+
+<!-- FLOATING WA BUTTON -->
+<a href="https://wa.me/628197653888" class="wa-float" target="_blank" aria-label="Chat on WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+  // Sticky nav
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Project tabs
+  function showPanel(id, btn) {
+    document.querySelectorAll('.proj-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.proj-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // Scroll reveal (lightweight)
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.stone-card, .why-item, .step, .testi-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
